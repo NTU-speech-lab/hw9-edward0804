@@ -105,13 +105,6 @@ model = AE().cuda()
 
 model.load_state_dict(torch.load(sys.argv[2]))
 model.eval()
-valX = np.load('valX.npy')
-valY = np.load('valY.npy')
-latents = inference(valX, model)
-pred_from_latent, emb_from_latent = predict(latents)
-acc_latent = cal_acc(valY, pred_from_latent)
-print('The clustering accuracy is:', acc_latent)
-
 latents = inference(X=trainX, model=model)
 pred, X_embedded = predict(latents)
 
